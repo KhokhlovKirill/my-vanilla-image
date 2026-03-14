@@ -15,7 +15,7 @@ This template repository is a starting point for creating custom [Vib images](ht
 - Now, perform your additions and modifications to the recipe as per your requirements.
 - If you just want to install `.deb` files, you can just put them in `includes.container/deb-pkgs` (if you choose this option, make sure to keep the .deb file up to date, it will not be upgraded automatically)
 - В образ добавлена поддержка VPN по протоколу XRay (v2rayA + Xray). После загрузки системы запустите `sudo systemctl start v2raya`, откройте в браузере http://localhost:2017 и импортируйте нативный конфиг XRay для подключения к VPN.
-- В образ добавлены Docker Engine и Docker Desktop. Демон Docker: `sudo systemctl start docker`. Docker Desktop (GUI): запуск из меню приложений или `systemctl --user start docker-desktop`. При первом запуске Docker Desktop потребуется принять лицензионное соглашение.
+- В образ добавлен Docker Engine. Запуск: `sudo systemctl start docker`. Docker Desktop (GUI) в образ не входит — его postinst требует записи в `/etc/hosts`, что недоступно при сборке. После первой загрузки установите вручную: скачайте [docker-desktop-amd64.deb](https://desktop.docker.com/linux/main/amd64/docker-desktop-amd64.deb) и выполните `sudo apt install ./docker-desktop-amd64.deb`.
 - Optionally, add your modules to the `modules` directory and add them to the package-modules `includes` in `recipe.yml`.
 - You can check the Actions tab in GitHub to see the build progress of your image.
 

@@ -1,5 +1,5 @@
-# Docker Engine (CLI + daemon) и Docker Desktop (GUI).
-# Engine: systemctl start docker. Desktop: приложение Docker Desktop или systemctl --user start docker-desktop
+# Docker Engine (CLI + daemon). Docker Desktop не ставится в образ: его postinst пишет в /etc/hosts,
+# что в среде сборки недоступно. Установите Desktop после загрузки: см. README.
 name: docker-and-desktop
 type: shell
 commands:
@@ -17,6 +17,3 @@ commands:
   - apt-get update
   - apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
   - systemctl enable docker.service
-  - wget -q -O /tmp/docker-desktop-amd64.deb https://desktop.docker.com/linux/main/amd64/docker-desktop-amd64.deb
-  - apt-get install -y /tmp/docker-desktop-amd64.deb || true
-  - rm -f /tmp/docker-desktop-amd64.deb
