@@ -1,0 +1,12 @@
+# v2rayA + Xray: веб-панель и ядро для VPN по протоколу XRay.
+# Позволяет импортировать нативный конфиг XRay (альтернатива GUI AmneziaVPN).
+# После загрузки: http://localhost:2017 (запуск: sudo systemctl start v2raya)
+name: v2raya-xray
+type: shell
+commands:
+  - mkdir -p /etc/apt/keyrings
+  - wget -qO - https://apt.v2raya.org/key/public-key.asc | tee /etc/apt/keyrings/v2raya.asc > /dev/null
+  - echo "deb [signed-by=/etc/apt/keyrings/v2raya.asc] https://apt.v2raya.org/ v2raya main" | tee /etc/apt/sources.list.d/v2raya.list
+  - apt-get update
+  - apt-get install -y v2raya xray
+  - systemctl enable v2raya.service

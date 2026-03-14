@@ -1,5 +1,5 @@
-name: Custom Vanilla Desktop # Replace this name with your image name
-id: custom # Replace this ID with your image ID
+name: Khokhlov Vanilla Image # Replace this name with your image name
+id: khokhlov-vanilla-image # Replace this ID with your image ID
 vibversion: 1.0.7
 
 stages:
@@ -43,6 +43,18 @@ stages:
       - modules/50-install-debs.yml # Sample local module present in this repository
       # - gh:vanilla-os/dev-image:main:modules/00-basics.yml # Sample GitHub remote module in the format: `gh:your-name/your-repo:branch:modules/file.yml`
       # - https://raw.githubusercontent.com/Vanilla-OS/dev-image/main/modules/05-go.yml # Sample full URL remote module
+
+  # VPN по протоколу XRay (v2rayA + Xray). Панель: http://localhost:2017, импорт нативного конфига XRay.
+  - name: v2raya-xray
+    type: includes
+    includes:
+      - modules/30-v2raya-xray.yml
+
+  # Docker Engine + Docker Desktop (GUI). Engine: sudo systemctl start docker; Desktop: приложение в меню или systemctl --user start docker-desktop
+  - name: docker-and-desktop
+    type: includes
+    includes:
+      - modules/40-docker-desktop.yml
 
   # Put your custom actions above this comment
 
