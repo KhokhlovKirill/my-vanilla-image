@@ -45,13 +45,13 @@ stages:
       # - https://raw.githubusercontent.com/Vanilla-OS/dev-image/main/modules/05-go.yml # Sample full URL remote module
 
   # VPN по протоколу XRay (v2rayA + Xray). Панель: http://localhost:2017, импорт нативного конфига XRay.
-  - name: v2raya-xray
+  - name: install-v2raya-xray
     type: includes
     includes:
       - modules/30-v2raya-xray.yml
 
   # Docker Engine + Docker Desktop (GUI). Engine: sudo systemctl start docker; Desktop: приложение в меню или systemctl --user start docker-desktop
-  - name: docker-and-desktop
+  - name: install-docker-desktop
     type: includes
     includes:
       - modules/40-docker-desktop.yml
