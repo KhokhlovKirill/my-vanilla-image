@@ -22,6 +22,11 @@ stages:
     type: shell
     commands:
     - lpkg --unlock
+    # Отключаем репозитории Vanilla OS, чтобы система обходилась без них
+    - find /etc/apt/sources.list.d -maxdepth 1 -type f -iname '*vanilla*list' -delete 2>/dev/null || true
+    - sed -i '/vanilla-os.org/s/^/# /' /etc/apt/sources.list /etc/apt/sources.list.d/*.list 2>/dev/null || true
+    # Перенаправляем репозитории Ubuntu на российское зеркало
+    - sed -i 's|http://[^ ]*ubuntu.com/ubuntu/|http://mirror.yandex.ru/ubuntu/|g' /etc/apt/sources.list /etc/apt/sources.list.d/*.list 2>/dev/null || true
     - apt-get update
 
   # Put your custom actions below this comment
